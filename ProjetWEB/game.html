@@ -1,0 +1,53 @@
+<!-- game.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+      <!-- IMPORT DE LA POLICE PIXEL “Press Start 2P” -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ─── Message d’intro avant chaque partie ─── -->
+<div id="intro-message">
+    <p>Éliminez l’adversaire à coups d’épée <br>(<span class="key">Escape</span>)</p>
+  </div>
+  
+
+     <!-- Bouton de retour en haut à gauche -->
+  <div id="back-to-home">
+    <button onclick="window.location.href='index.html'">Retour Accueil</button>
+  </div>
+
+    <div id="game-container">
+        <div id="terrain">
+            <div id="bot"></div>
+        </div>
+        <div id="attack-animation"></div> 
+        <div id="player"></div>
+    </div>
+
+    <div id="minimap-container">
+        <div id="minimap">
+            <div id="miniplayer"></div>
+        </div>
+    </div>
+
+    <div id="bot-health-container"></div>
+    <div id="health-container"></div>
+
+
+<div id="end-game-overlay">
+    <div id="end-game-box">
+      <p id="end-game-text"></p>
+      <button id="restart-button">Recommencer</button>
+    </div>
+  </div>
+  
+
+    <script src="script.js"></script>
+</body>
+</html>

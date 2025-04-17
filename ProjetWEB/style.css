@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0077be;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+#terrain {
+    position: absolute;
+    width: 5000px; /* Grande carte */
+    height: 5000px;
+    background-image: url('img/herbe.avif'); /* Image de pierre en fond */
+    background-size: 200px 200px; /* Ajustement pour correspondre aux cases */
+    background-repeat: repeat; /* Répète l'image sur toute la carte */
+    box-shadow: 0px 0px 100px 50px rgba(0, 0, 0, 0.331); /* Ombre autour du terrain */
+
+}
+
+
+#player {
+    width: 120px;
+    height: 120px;
+    background-image: url('img/stand-removebg-preview.png'); /* 🔹 Image par défaut (immobile) */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* Conteneur de la mini-map (cadre noir) */
+#minimap-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 170px;  /* 🔹 Ajusté pour mieux contenir la mini-map */
+    height: 170px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;  /* 🔹 Centre la mini-map à l’intérieur */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mini-map (carte réduite) */
+#minimap {
+    width: 155px;  /* 🔹 Correspond exactement à la zone visible */
+    height: 155px;
+    background-image: url('img/mini-fond.png');
+    background-size: cover;
+    position: relative;  /* 🔹 Corrige l’alignement */
+    border: 2px solid rgba(255, 255, 255, 0.76);
+}
+
+/* Joueur sur la mini-map */
+#miniplayer {
+    width: 6px; /* 🔹 Ajusté pour correspondre à la nouvelle échelle */
+    height: 6px;
+    background-color: rgb(240, 238, 236);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.rock {
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    background-image: url('img/rocher.png'); /* Remplace par ton image de rocher */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10; /* 🔹 S'assurer qu'ils sont bien devant */
+    pointer-events: none; /* Empêche de bloquer les clics (au cas où) */
+    filter: drop-shadow(8px 8px 2px rgba(0, 0, 0, 0.5));
+}
+
+
+/* 🔹 Conteneur de la barre de vie */
+#health-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid white;
+}
+
+/* 🔹 PV individuel */
+.health-point {
+    width: 10px;
+    height: 20px;
+    background-color: limegreen;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+#bot {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    background-image: url('img/stand-removebg-preview.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Z-index pour être au-dessus de l’herbe */
+    z-index: 15; 
+}
+
+
+#bot-health-container {
+    position: fixed;
+    top: 50px;      /* un peu plus bas que la barre du joueur */
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid white;
+}
+
+.bot-health-point {
+    width: 10px;
+    height: 20px;
+    background-color: limegreen;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+#back-to-home {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;      /* Pour être au-dessus de tout */
+    
+  }
+  
+  #back-to-home button {
+    font-family: 'Press Start 2P', sans-serif;
+    border-radius: 4px;       /* Légèrement arrondi */
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background: url('img/bois.jpg') center center / cover no-repeat;
+  filter: brightness(1);
+  }
+  
+  #back-to-home button:hover {
+    filter: brightness(1.2);
+    
+  }
+
+
+  /* === Overlay qui recouvre tout l’écran (invisible au départ) === */
+#end-game-overlay{
+    position:fixed; inset:0;
+    display:none;                     /* on l’affiche en JS */
+    justify-content:center; align-items:center;
+    background:rgba(0,0,0,.6);
+    z-index:9999;
+    font-family:'Press Start 2P',sans-serif;
+  }
+  
+  /* === Cadre blanc au centre === */
+  #end-game-box{
+    background: url('img/bois.jpg') center center / cover no-repeat;
+    padding:30px 40px; max-width:400px;
+    border-radius:10px; text-align:center;
+    box-shadow:0 0 15px #000;
+  }
+  
+  /* Texte victoire / défaite */
+  #end-game-text{font-size:1rem; margin-bottom:20px;}
+  
+  /* Bouton Recommencer */
+  #restart-button{
+    background: url('img/bois.jpg') center center / cover no-repeat;
+    border-radius:4px; padding:10px 20px;
+    font-size:.8rem; cursor:pointer;
+    transition:background .2s;
+    filter: brightness(0.8);
+    font-family:'Press Start 2P',sans-serif;
+  }
+  #restart-button:hover{background:#8e4c02c6;}
+  
+  
+
+
+
+/* === Bloc qui recouvre le jeu au lancement === */
+#intro-message {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 9998;
+    font-family: 'Press Start 2P', sans-serif;
+    animation: fadeOut 0.5s ease-in-out forwards;
+    animation-delay: 4s;
+    pointer-events: none; /* empêche les clics */
+  }
+  
+  #intro-message p {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    animation: zoomEffect 4s ease-in-out forwards;
+    text-shadow: 2px 2px #000;
+  }
+  
+  #intro-message .key {
+    color: yellow;
+  }
+  
+  /* Animation zoom/dézoom du texte */
+  @keyframes zoomEffect {
+    0% { transform: scale(5.3); opacity: 0; }
+    30% { transform: scale(1.7); opacity: 1; }
+   /* 70% { transform: scale(1.1); opacity: 1; }*/
+    100% { transform: scale(0); opacity: 0; }
+  }
+  
+  /* Disparition du fond noir */
+  @keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+  
+
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+   <!-- IMPORT DE LA POLICE PIXEL “Press Start 2P” -->
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>À propos</title>
+  <style>
+    /* Occupation de tout l'écran */
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Press Start 2P', sans-serif;
+    }
+
+    /* Le conteneur du GIF flouté */
+    .bg-blur {
+      position: fixed;     /* reste calé sur l'écran */
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;         /* derrière le contenu */
+      /* GIF centré et en "cover" */
+      background: url('img/back.gif') center center / cover no-repeat;
+      filter: blur(5px);   /* applique le flou */
+    }
+
+    /* Le contenu centré au milieu */
+    .about-content {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+      text-shadow: 2px 2px #000;
+      background-color: rgba(0, 0, 0, 0.3); /* Optionnel : fond semi-transparent */
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+   
+     .about-content h1 {
+      font-size: 1.6rem; /* Choisis la valeur qui te plaît */
+    }
+
+
+    button {
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #111;
+      cursor: pointer;
+      margin-top: 20px;
+      background: url('img/aest.jpg') center center / cover no-repeat;
+    }
+
+
+
+
+  
+  </style>
+</head>
+<body>
+  <!-- DIV qui contient le GIF flouté -->
+  <div class="bg-blur"></div>
+
+  <!-- Le contenu au-dessus (texte, bouton, etc.) -->
+  <div class="about-content">
+    <p>Bienvenue&nbsp;!   
+        <p> Êtes-vous prêt à plonger dans l’inconnu ?</p>
+       Dans ce jeu, vous incarnez le personnage Iryn, 
+       créé à partir des initiales des quatres créateurs : 
+       Irshad, Racine, Yessen et Nader. &nbsp;</p>
+
+    <button onclick="window.location.href='index.html'">Retour</button>
+  </div>
+</body>
+</html>
