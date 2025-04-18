@@ -24,6 +24,17 @@
     transform: scale(1.05);
     z-index: 0;
   }
+
+  .game-title {
+    font-size: 4.1rem;
+    color: #00ff7f; /* Vert néon */
+    text-shadow:
+      0 0 5px #00ff7f,
+      0 0 10px #00cc66,
+      1px 1px 1px #003311; /* légère ombre physique en plus */
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
   
   /* Conteneur qui centre tout */
   .menu-container {
@@ -37,16 +48,6 @@
     justify-content: center;
   }
   
-  .game-title {
-    font-size: 4.1rem;
-    color: #00ff7f; /* Vert néon */
-    text-shadow:
-      0 0 5px #00ff7f,
-      0 0 10px #00cc66,
-      1px 1px 1px #003311; /* légère ombre physique en plus */
-    margin-bottom: 0.5rem;
-    text-align: center;
-  }
   
   
   
@@ -94,15 +95,7 @@
     background-color: #bbb;
     filter: brightness(1.2);
   }
-  
-  /* Ligne contenant 2 petits boutons côte à côte */
-  .small-button-row {
-    display: flex; 
-    gap: 1rem; 
-     /* La police pixel arcade */
-  font-family: 'Press Start 2P', sans-serif;
-  }
-  
+
   /* PETITS boutons (Paramètres, Magasin) */
   .btn-small {
     width: 120px;
@@ -119,6 +112,16 @@
   background: url('img/aest.jpg') center center / cover no-repeat;
   filter: brightness(1);
   }
+  
+  /* Ligne contenant 2 petits boutons côte à côte */
+  .small-button-row {
+    display: flex; 
+    gap: 1rem; 
+     /* La police pixel arcade */
+  font-family: 'Press Start 2P', sans-serif;
+  }
+  
+  
   
   .btn-small:hover {
     background-color: #bbb;
@@ -144,6 +147,13 @@
   text-align: center;
   }
 
+  /* Quand on survole .avatar, la statique disparaît et le GIF apparaît */
+  .avatar:hover .avatar-static {
+    display: none;
+  }
+  .avatar:hover .avatar-run {
+    display: block;
+  }
 
   .avatar {
     position: relative;
@@ -172,15 +182,16 @@
     position: absolute;
     top: 0; 
     left: 0;
-    width: 100%;
     height: 100%;
-    object-fit: contain; /* ou cover, selon l’effet souhaité */
+    width: 100%;
+    object-fit:   contain; /* ou cover, selon l’effet souhaité */
   }
 
   /* 1) PNG à 100 % */
 .avatar-static {
-    width: 100%;
     height: 100%;
+    width: 100%;
+    
   }
   
   /* 2) GIF plus grand (p. ex. 120 %) */
@@ -195,10 +206,3 @@
   
   
  
-  /* Quand on survole .avatar, la statique disparaît et le GIF apparaît */
-  .avatar:hover .avatar-static {
-    display: none;
-  }
-  .avatar:hover .avatar-run {
-    display: block;
-  }
