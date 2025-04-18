@@ -1,0 +1,204 @@
+/* Remise à zéro des marges/paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    /* La police pixel arcade */
+  font-family: 'Press Start 2P', sans-serif;
+    overflow: hidden; /* évite la barre de scroll */
+  }
+  
+  /* Image de fond floue */
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Mets l’image de fond de ton choix ici */
+    background: url('img/background.jpg') center center / cover no-repeat;
+    filter: blur(0px);
+    transform: scale(1.05);
+    z-index: 0;
+  }
+  
+  /* Conteneur qui centre tout */
+  .menu-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .game-title {
+    font-size: 4.1rem;
+    color: #00ff7f; /* Vert néon */
+    text-shadow:
+      0 0 5px #00ff7f,
+      0 0 10px #00cc66,
+      1px 1px 1px #003311; /* légère ombre physique en plus */
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  
+  
+  
+  
+  /* Sous-titre (slogan) */
+  .game-subtitle {
+    font-size: 1.2rem;
+    color: #00ff7f; /* Vert néon */
+    text-shadow:
+      0 0 5px #00ff7f,
+      0 0 10px #00cc66,
+   
+      2px 2px 2px #003311; /* légère ombre physique en plus */
+    margin-bottom: 2rem;
+   
+  }
+  
+  /* Le bloc qui englobe nos 3 "niveaux" de boutons */
+  .menu-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centre horizontalement */
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* GROS boutons (Jouer, Succès) */
+  .btn-big {
+    width: 255px;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #111;
+    cursor: pointer;
+    transition: background-color 0.2s;
+     /* La police pixel arcade */
+  font-family: 'Press Start 2P', sans-serif;
+  background: url('img/aest.jpg') center center / cover no-repeat;
+  filter: brightness(1);
+  }
+  
+  .btn-big:hover {
+    background-color: #bbb;
+    filter: brightness(1.2);
+  }
+  
+  /* Ligne contenant 2 petits boutons côte à côte */
+  .small-button-row {
+    display: flex; 
+    gap: 1rem; 
+     /* La police pixel arcade */
+  font-family: 'Press Start 2P', sans-serif;
+  }
+  
+  /* PETITS boutons (Paramètres, Magasin) */
+  .btn-small {
+    width: 120px;
+    height: 40px;
+    border: 2px solid #555;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: #111;
+    cursor: pointer;
+    transition: background-color 0.2s;
+     /* La police pixel arcade */
+  font-family: 'Press Start 2P', sans-serif;
+  background: url('img/aest.jpg') center center / cover no-repeat;
+  filter: brightness(1);
+  }
+  
+  .btn-small:hover {
+    background-color: #bbb;
+    filter: brightness(1.2);
+  }
+  
+  .avatar-area {
+    position: absolute;
+    /* On centre verticalement l’avatar (50% depuis le haut, puis on translate de -50% sur Y) */
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+  
+    /* Aligne le contenu (l’avatar et le nom) au centre horizontalement */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 4px #cccccc,
+    1px 1px 1px #333333;
+  text-align: center;
+  }
+
+
+  .avatar {
+    position: relative;
+    width: 178px; 
+    height: 278px;
+    border: 2px solid #555;
+    box-shadow: 2px 2px #000;
+    margin-bottom: 9px;
+  
+    /* Mets le chemin de ton image, par ex. avatar-bg.jpg */
+    background: url('img/aest.jpg') center center / cover no-repeat;
+  }
+
+  .avatar-foreground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+
+  /* Les 2 images, en position absolue pour se superposer */
+.avatar img {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ou cover, selon l’effet souhaité */
+  }
+
+  /* 1) PNG à 100 % */
+.avatar-static {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* 2) GIF plus grand (p. ex. 120 %) */
+  .avatar-run {
+    display: none;
+    width: 100%;
+    height: 100%;
+    /* On applique un zoom x1.2 */
+    transform: scale(1.7);
+    transform-origin: center center; 
+  }
+  
+  
+ 
+  /* Quand on survole .avatar, la statique disparaît et le GIF apparaît */
+  .avatar:hover .avatar-static {
+    display: none;
+  }
+  .avatar:hover .avatar-run {
+    display: block;
+  }
