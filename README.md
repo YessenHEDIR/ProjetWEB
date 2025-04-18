@@ -39,10 +39,11 @@ Ouvrir le fichier `index.html`
 
 👥 Membres du groupe
 
-- Yessen
-- Nader
-- Irshad
-- Racine
+
+- Yessen (codage du jeu -> html/java)
+- Nader  (codage du jeu -> html/java)
+- Irshad (style du site -> html/css)
+- Racine (style du jeu -> html/css)
 
 
 ---
